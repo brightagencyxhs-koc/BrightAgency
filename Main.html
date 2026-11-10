@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bright Agency | Xiaohongshu marketing for F&amp;B</title>
+<meta name="description" content="We connect restaurants and cafés with local Xiaohongshu creators. Real posts that stay up. One business per area.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fbf4e8;--sand:#f0e2cc;--ink:#2a0d0b;--red:#b80d05;--muted:#6f5a54;--line:#dcc9ad}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.65 Poppins,system-ui,sans-serif}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.12}
+h1{font-size:clamp(2.4rem,7vw,5rem);max-width:15ch}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1.5rem}
+section{padding:clamp(4rem,10vw,8rem) 1.5rem}
+.wrap{max-width:960px;margin:0 auto}
+.narrow{max-width:60ch}
+p+p{margin-top:1rem}
+.btn{display:inline-block;background:var(--red);color:#fff;padding:.9rem 1.6rem;border-radius:999px;text-decoration:none;font-weight:500}
+.btn:hover{background:var(--ink)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.sub{color:var(--muted);margin-top:1.5rem;max-width:46ch}
+header{padding:1.5rem;display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:0 auto}
+header b{font-family:"Young Serif",serif;font-weight:400;font-size:1.2rem}
+header a{color:var(--ink);font-size:.95rem}
+.hero{padding-top:clamp(3rem,8vw,6rem)}
+.hero .btn{margin-top:2rem}
+.hero small{display:block;margin-top:1rem;color:var(--muted);font-size:.9rem}
+.slot{border:1.5px dashed var(--red);border-radius:14px;padding:2rem;color:var(--red);text-align:center;font-size:.95rem}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.vs h3{font-size:1.3rem;margin-bottom:1rem}
+.vs ul{list-style:none;padding:0}
+.vs li{padding:.7rem 0;border-top:1px solid var(--line)}
+.vs .no{color:var(--muted)}
+.steps{margin-top:4rem;padding:0;list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.steps li{counter-increment:s;border-top:2px solid var(--ink);padding-top:.8rem;font-size:.95rem}
+.steps li::before{content:counter(s);display:block;font-family:"Young Serif",serif;font-size:1.6rem;color:var(--red)}
+.band{background:var(--sand)}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem}
+.nums b{display:block;font:400 2.2rem/1.1 "Young Serif",serif;color:var(--red)}
+.nums span{font-size:.9rem;color:var(--muted)}
+.clients{font-family:"Young Serif",serif;font-size:1.2rem;line-height:1.9;margin:2rem 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.grid4 .slot{aspect-ratio:3/4;display:grid;place-items:center;padding:1rem}
+.grid3 .slot{aspect-ratio:9/14;display:grid;place-items:center;padding:1rem}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.pkg{border:1.5px solid var(--ink);border-radius:18px;padding:2rem}
+.pkg h3{font-size:2.4rem;color:var(--red)}
+.pkg p{margin-top:.4rem}
+.pkg .tot{font-size:1.1rem;font-weight:500}
+.note{margin-top:1.5rem;color:var(--muted);font-size:.95rem}
+details{border-top:1px solid var(--line);padding:1.1rem 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:500;list-style:none}
+summary::after{content:"+";float:right;color:var(--red)}
+details[open] summary::after{content:"–"}
+details p{margin-top:.7rem;color:var(--muted)}
+.close{background:var(--ink);color:var(--paper);text-align:center}
+.close h2{margin-inline:auto;max-width:18ch}
+.close .btn{background:var(--paper);color:var(--ink)}
+.close .btn:hover{background:var(--red);color:#fff}
+footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)}
+.wa{position:fixed;right:1rem;bottom:1rem;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+@media(max-width:720px){.vs,.price,.nums{grid-template-columns:1fr}.steps,.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <b>Bright Agency</b>
+  <a href="#price">Pricing</a>
+</header>
+
+<!-- 1. TEXT SUMMARY -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <h1>Get your restaurant talked about on 小红书.</h1>
+    <p class="sub">We connect F&amp;B owners with local Xiaohongshu creators. Real posts from real diners, and they stay up forever.</p>
+    <a class="btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Bright%20Agency%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Message us on WhatsApp</a>
+    <small>We only work with 1 business per area.</small>
+  </div>
+</section>
+
+<!-- 2. MENU INTERACTIVE (to add) -->
+<section id="menu"><div class="wrap"><div class="slot">Menu interactive goes here</div></div></section>
+
+<!-- 3. PROFIT CALCULATOR (to add) -->
+<section id="calculator" class="band"><div class="wrap"><div class="slot">Profit calculator goes here</div></div></section>
+
+<!-- 4. EXPLAINERS -->
+<section id="why">
+  <div class="wrap">
+    <h2>Why creators beat paid ads</h2>
+    <div class="vs">
+      <div class="no">
+        <h3>Paid ads</h3>
+        <ul><li>High price</li><li>The post doesn’t stay</li><li>Skipped by the audience</li></ul>
+      </div>
+      <div>
+        <h3>Our creators</h3>
+        <ul><li>Affordable price</li><li>The post stays forever</li><li>Trusted by their followers</li></ul>
+      </div>
+    </div>
+    <ol class="steps">
+      <li>Pay a deposit, half the full price</li>
+      <li>We onboard you, recruit and schedule creators</li>
+      <li>You check every draft before it posts</li>
+      <li>Pay the rest once the posts are live</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5. TRUST + NUMBERS + PORTFOLIO -->
+<section id="proof" class="band">
+  <div class="wrap">
+    <h2>Restaurants that trust us</h2>
+    <div class="nums">
+      <div><b>1,000+</b><span>followers per creator, minimum</span></div>
+      <div><b>10k–100k</b><span>likes across a creator’s posts</span></div>
+      <div><b>2 free</b><span>creators if you’re unsatisfied, no questions asked</span></div>
+    </div>
+    <p class="clients">Brewmaster · Hanare Japanese Cuisine · Du Du Hotpot · Golden Valley · Say Cheese · Snowflake · Cheong Dam Chae · Fotokopi</p>
+    <!-- Replace each .slot with: <img src="images/name.jpg" alt="Post for Brewmaster"> -->
+    <div class="grid4">
+      <div class="slot">Post screenshot</div><div class="slot">Post screenshot</div>
+      <div class="slot">Post screenshot</div><div class="slot">Post screenshot</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. VIDEOS -->
+<section id="videos">
+  <div class="wrap">
+    <h2>See it in action</h2>
+    <!-- Replace each .slot with: <video src="videos/clip.mp4" controls preload="none" playsinline></video> (keep under 10 MB) -->
+    <div class="grid3">
+      <div class="slot">Video</div><div class="slot">Video</div><div class="slot">Video</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. PRICE -->
+<section id="price" class="band">
+  <div class="wrap">
+    <h2>Simple pricing</h2>
+    <div class="price">
+      <div class="pkg">
+        <h3>RM200</h3>
+        <p>per creator</p>
+        <p class="tot">10 creators · RM2,000</p>
+      </div>
+      <div class="pkg">
+        <h3>RM150</h3>
+        <p>per creator</p>
+        <p class="tot">20 creators · RM3,000</p>
+        <p>Plus 2 free creators on your second package.</p>
+      </div>
+    </div>
+    <p class="note">No extra costs. Typical market price is RM150 to RM800 per creator.</p>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section id="faq">
+  <div class="wrap narrow">
+    <h2>Questions</h2>
+    <details><summary>What if a creator doesn’t match my brand’s tone?</summary><p>Browse our creator list first, and check each draft before anything is posted.</p></details>
+    <details><summary>I’m too busy to manage creators.</summary><p>We handle the recruiting and scheduling. Visits are flexible around your opening hours.</p></details>
+    <details><summary>How does payment work?</summary><p>Half as a deposit to start, the rest once your posts are live.</p></details>
+    <details><summary>What does “1 business per area” mean?</summary><p>We won’t work with your direct competitor in the same area while we work with you.</p></details>
+  </div>
+</section>
+
+<!-- 9. WHATSAPP -->
+<section class="close" id="contact">
+  <div class="wrap">
+    <h2>Let’s get your place talked about.</h2>
+    <a class="btn" href="https://wa.me/60XXXXXXXXX?text=Hi%20Bright%20Agency%2C%20I%27d%20like%20to%20know%20more." target="_blank" rel="noopener">Message us on WhatsApp</a>
+  </div>
+</section>
+
+<footer>© Bright Agency</footer>
+<a class="btn wa" href="https://wa.me/60XXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+
+</body>
+</html>
