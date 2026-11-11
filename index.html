@@ -149,6 +149,26 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 .bk-card video{width:100%;max-height:420px;border-radius:8px;background:#000}
 .rc .tot{font-weight:600}
 .rc .btn{display:block;text-align:center;margin-top:1rem}
+.calc{max-width:440px;margin:2.5rem auto 0;background:var(--ink);border-radius:26px;padding:1.3rem 1.3rem 1.6rem;color:var(--paper);box-shadow:0 26px 40px -24px rgba(42,13,11,.7),inset 0 0 0 2px #4a2320}
+.calc-top{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;margin-bottom:.9rem}
+.calc-top b{font-weight:600;letter-spacing:.05em}
+.solar{width:74px;height:20px;border-radius:4px;border:1px solid #5a3a37;background:repeating-linear-gradient(90deg,#3b2b2a 0 8px,#241514 8px 10px)}
+.lcd{background:#c8d5a8;color:#1d2a16;border-radius:10px;padding:.9rem 1.1rem 1rem;font-family:ui-monospace,"SF Mono","Courier New",monospace;box-shadow:inset 0 3px 8px rgba(0,0,0,.35)}
+.lcd small{display:block;font-size:.7rem;opacity:.75;letter-spacing:.04em}
+.lcd .big{font-size:2.5rem;line-height:1.1;text-align:right;font-weight:700;margin:.2rem 0 .3rem}
+.lcd .note{font-size:.72rem;text-align:right;opacity:.8;margin-bottom:.6rem;min-height:1.1em}
+.lcd .row{display:flex;justify-content:space-between;gap:.6rem;font-size:.8rem;padding:.3rem 0;border-top:1px dashed rgba(29,42,22,.4)}
+.lcd .row b{white-space:nowrap}
+.calc-in{display:flex;align-items:center;gap:.5rem;margin-top:1rem;font-size:.85rem}
+.calc-in label,.calc-in span.l{flex:1;line-height:1.3}
+.calc-in input{width:96px;text-align:right;background:#c8d5a8;color:#1d2a16;border:0;border-radius:6px;padding:.55rem .6rem;font:600 1rem ui-monospace,"Courier New",monospace}
+.calc-in output{min-width:2.2rem;text-align:center;font:600 1.1rem ui-monospace,"Courier New",monospace}
+.key{display:inline-block;text-align:center;text-decoration:none;background:var(--paper);color:var(--ink);border:0;border-radius:9px;padding:.6rem .9rem;font:inherit;font-size:.9rem;font-weight:600;box-shadow:0 3px 0 #b9a58a;cursor:pointer}
+.key:active{transform:translateY(2px);box-shadow:0 1px 0 #b9a58a}
+.key[aria-pressed="true"]{background:var(--red);color:#fff;box-shadow:0 3px 0 #7a0803}
+.keys2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1.1rem}
+.key.eq{display:block;margin-top:1.1rem;background:var(--red);color:#fff;box-shadow:0 3px 0 #7a0803;padding:.8rem}
+.calc-fine{max-width:440px;margin:1rem auto 0;font-size:.82rem;color:var(--muted);text-align:center}
 @media(max-width:820px){.bk{grid-template-columns:1fr}.bk::before{display:none}.bk-left{border-radius:10px 10px 0 0}.bk-right{border-radius:0 0 18px 18px}.bk-cols{grid-template-columns:1fr}.bk-col,.bk-col:first-child,.bk-col:last-child{padding:1.2rem 0;border-left:0;border-top:1px dotted #c9ae8a}.bk-col:first-child{border-top:0}}
 @media(prefers-reduced-motion:reduce){.bk-right.turn{animation:none}}
 </style>
@@ -239,8 +259,72 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 })();
 </script>
 <!-- 3. PROFIT CALCULATOR (to add) -->
-<section id="calculator" class="band"><div class="wrap"><div class="slot">Profit calculator goes here</div></div></section>
+<!-- ============ 2) REPLACE THE CALCULATOR SECTION WITH THIS ============ -->
+<section id="calculator" class="band">
+  <div class="wrap">
+    <h2>Will it pay for itself?</h2>
+    <p class="sub">Put in your own numbers. We use the minimum a creator delivers, so this is the floor, not the best case.</p>
+    <div class="calc" id="calc">
+      <div class="calc-top"><b>PROFIT CALC</b><span class="solar"></span></div>
+      <div class="lcd" aria-live="polite">
+        <small>BREAK-EVEN AT</small>
+        <div class="big" id="cBig">--</div>
+        <div class="note" id="cNote"></div>
+        <div class="row"><span>Cost per customer</span><b id="cCpa">--</b></div>
+        <div class="row"><span>Min. customers per post</span><b id="cMin">9</b></div>
+        <div class="row"><span>Min. profit per post</span><b id="cPost">--</b></div>
+        <div class="row"><span id="cPkgL">Whole package</span><b id="cPkg">--</b></div>
+      </div>
+      <div class="calc-in"><label for="cProfit">Average profit per customer (RM)</label><input id="cProfit" type="number" inputmode="decimal" min="0" step="1" value="15"></div>
+      <div class="calc-in"><span class="l">Pax per table</span><button class="key" type="button" id="cMinus" aria-label="Fewer pax">−</button><output id="cPax">3</output><button class="key" type="button" id="cPlus" aria-label="More pax">+</button></div>
+      <div class="keys2">
+        <button class="key" type="button" data-n="10" data-p="200" aria-pressed="true">10 creators<br>RM200 each</button>
+        <button class="key" type="button" data-n="20" data-p="150" aria-pressed="false">20 creators<br>RM150 each</button>
+      </div>
+      <a class="key eq" id="cWa" target="_blank" rel="noopener" href="#">= Send my numbers on WhatsApp</a>
+    </div>
+    <p class="calc-fine">Based on a minimum of 50 likes and saves per post, with 18% turning into customers. One customer = one table. Real results vary.</p>
+  </div>
+</section>
 
+<!-- ============ 3) PASTE THIS SCRIPT BEFORE </body> (after the menu script) ============ -->
+<script>
+(function(){
+  var WA="60129357173"; // your WhatsApp number
+  var MIN=Math.floor(50*0.18+1e-9); // 9 customers per post
+  var pax=3,n=10,price=200;
+  var $=function(i){return document.getElementById(i)};
+  function rm(v,d){return "RM"+v.toLocaleString("en-MY",{minimumFractionDigits:d,maximumFractionDigits:d})}
+  function calc(){
+    var p=parseFloat($("cProfit").value)||0,per=p*pax;
+    $("cPax").textContent=pax;
+    $("cCpa").textContent=rm(price/MIN,2);
+    $("cPkgL").textContent="Whole package ("+n+" creators)";
+    if(per<=0){
+      $("cBig").textContent="--";$("cNote").textContent="Enter your profit per customer";
+      $("cPost").textContent="--";$("cPkg").textContent="--";return;
+    }
+    var be=Math.ceil(price/per-1e-9);
+    $("cBig").textContent=be+(be===1?" customer":" customers");
+    $("cNote").textContent=be<=MIN?"One post pays back its "+rm(price,0):"Needs "+Math.ceil(be/MIN)+" posts to pay back "+rm(price,0);
+    $("cPost").textContent=rm(MIN*per-price,0);
+    $("cPkg").textContent=rm(n*MIN*per-n*price,0);
+    var msg="Hi Bright Agency, my numbers: "+rm(p,2)+" profit per customer, "+pax+" pax per table. Break-even is "+be+" customers on the "+n+"-creator package.";
+    $("cWa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+  }
+  $("cProfit").addEventListener("input",calc);
+  $("cMinus").onclick=function(){pax=Math.max(1,pax-1);calc()};
+  $("cPlus").onclick=function(){pax=Math.min(20,pax+1);calc()};
+  document.querySelectorAll("#calc [data-n]").forEach(function(b){
+    b.onclick=function(){
+      n=+b.dataset.n;price=+b.dataset.p;
+      document.querySelectorAll("#calc [data-n]").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+      calc();
+    };
+  });
+  calc();
+})();
+</script>
 <!-- 4. EXPLAINERS -->
 <section id="why">
   <div class="wrap">
