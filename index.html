@@ -112,56 +112,16 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 </style>
 
 <!-- ============ 2) REPLACE THE MENU SLOT SECTION WITH THIS ============ -->
-<style>
-.bk{position:relative;display:grid;grid-template-columns:1.35fr 1fr;margin-top:2.5rem;border-radius:10px 18px 18px 10px;box-shadow:0 30px 50px -28px rgba(42,13,11,.55),0 0 0 1px var(--line);background:#fffaf0}
-.bk::before{content:"";position:absolute;top:0;bottom:0;left:calc(57.4% - 22px);width:44px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(110,70,30,.16) 45%,rgba(110,70,30,.28) 50%,rgba(110,70,30,.16) 55%,transparent)}
-.bk-left,.bk-right{position:relative;padding:2.6rem 2.2rem;background:
-  repeating-linear-gradient(0deg,rgba(150,110,60,.025) 0 2px,transparent 2px 4px),#fffaf0}
-.bk-left{border-radius:10px 0 0 10px}
-.bk-left::after,.bk-right::after{content:"";position:absolute;inset:14px;border:1px solid var(--red);opacity:.45;pointer-events:none;border-radius:4px}
-.bk-right{background-color:#fbf1de;border-radius:0 18px 18px 0;transform-origin:left center}
-.bk-right.turn{animation:turn .7s cubic-bezier(.2,.7,.2,1)}
-@keyframes turn{from{transform:perspective(1600px) rotateY(-80deg);opacity:.2}to{transform:none;opacity:1}}
-.bk-head{text-align:center;margin-bottom:1.8rem}
-.bk-head b{font:400 1.7rem "Young Serif",serif;color:var(--ink)}
-.bk-head span{display:block;font-style:italic;color:var(--muted);font-size:.9rem}
-.orn{display:flex;align-items:center;gap:.7rem;margin:.9rem auto 0;max-width:180px;color:var(--red)}
-.orn::before,.orn::after{content:"";flex:1;border-top:1px solid var(--red);opacity:.6}
-.orn i{width:7px;height:7px;background:var(--red);transform:rotate(45deg)}
-.bk-cols{display:grid;grid-template-columns:repeat(3,1fr)}
-.bk-col{padding:0 1rem;border-left:1px dotted #c9ae8a}
-.bk-col:first-child{border-left:0;padding-left:0}
-.bk-col:last-child{padding-right:0}
-.bk-col h3{font-size:1.45rem;color:var(--red);text-align:center}
-.bk-col .sub{display:block;text-align:center;font-style:italic;font-size:.82rem;color:var(--muted);margin:.15rem 0 1.1rem}
-.bk-col button{display:flex;align-items:center;gap:.45rem;width:100%;text-align:left;background:none;border:0;font:inherit;font-size:.9rem;line-height:1.3;color:var(--ink);padding:.55rem 0;cursor:pointer}
-.bk-col button i{flex:1;min-width:8px;border-bottom:1.5px dotted #b99d7f;transform:translateY(5px)}
-.bk-col button::after{content:"";flex:none;width:15px;height:15px;border:1.5px solid var(--ink);border-radius:50%;transition:.15s}
-.bk-col button:hover{color:var(--red)}
-.bk-col button[aria-pressed="true"]{color:var(--red);font-weight:600}
-.bk-col button[aria-pressed="true"]::after{background:var(--red);border-color:var(--red);box-shadow:inset 0 0 0 3px #fffaf0;transform:scale(1.15)}
-.rc-empty{height:100%;display:grid;place-items:center;text-align:center;font-style:italic;color:var(--muted);padding:2rem 1rem}
-.rc{position:relative;background:#fff;padding:1.6rem 1.3rem 1.4rem;box-shadow:0 8px 20px -14px rgba(42,13,11,.5);margin-bottom:14px}
-.rc::after{content:"";position:absolute;left:0;right:0;bottom:-9px;height:10px;background:linear-gradient(135deg,#fff 5px,transparent 0) 0 0/14px 10px,linear-gradient(225deg,#fff 5px,transparent 0) 0 0/14px 10px}
-.rc h3{text-align:center;font-size:1.25rem}
-.rc .no{display:block;text-align:center;font-size:.78rem;color:var(--muted);margin:.2rem 0 1rem}
-.ln{display:flex;gap:.4rem;font-size:.88rem;padding:.2rem 0}
-.ln i{flex:1;border-bottom:1.5px dotted #b99d7f;transform:translateY(-5px)}
-.ln b{font-weight:500}
-.rc hr{border:0;border-top:1px dashed #b99d7f;margin:.9rem 0}
-.rc .seen{font-size:.82rem;font-style:italic;color:var(--muted);margin-bottom:.6rem}
-.bk-card{display:grid;grid-template-columns:54px 1fr;gap:.8rem;align-items:center;cursor:pointer;padding:.45rem 0}
-.bk-card img{width:54px;height:72px;object-fit:cover;border-radius:5px}
-.bk-card b{display:block;font:400 .98rem "Young Serif",serif}
-.bk-card span{font-size:.8rem;color:var(--muted)}
-.bk-card.on{grid-template-columns:1fr}
-.bk-card video{width:100%;max-height:420px;border-radius:8px;background:#000}
-.rc .tot{font-weight:600}
-.rc .btn{display:block;text-align:center;margin-top:1rem}
-@media(max-width:820px){.bk{grid-template-columns:1fr}.bk::before{display:none}.bk-left{border-radius:10px 10px 0 0}.bk-right{border-radius:0 0 18px 18px}.bk-cols{grid-template-columns:1fr}.bk-col,.bk-col:first-child,.bk-col:last-child{padding:1.2rem 0;border-left:0;border-top:1px dotted #c9ae8a}.bk-col:first-child{border-top:0}}
-@media(prefers-reduced-motion:reduce){.bk-right.turn{animation:none}}
-</style>
-
+<section id="menu">
+  <div class="wrap">
+    <h2>Order your campaign</h2>
+    <p class="sub">Pick one from each column. We’ll show you what we’ve done for places like yours.</p>
+    <div class="bk">
+      <div class="bk-left"><div class="bk-cols" id="bkCols"></div></div>
+      <div class="bk-right" id="bkOut"><p class="bk-hint">Your results will appear here once you’ve picked from all three columns.</p></div>
+    </div>
+  </div>
+</section>
 <!-- ============ 3) PASTE THIS BEFORE </body> ============ -->
 <script>
 (function(){
