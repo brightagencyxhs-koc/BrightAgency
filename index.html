@@ -30,6 +30,12 @@ header a{color:var(--ink);font-size:.95rem}
 .hero{padding-top:clamp(3rem,8vw,6rem)}
 .hero .btn{margin-top:2rem}
 .hero small{display:block;margin-top:1rem;color:var(--muted);font-size:.9rem}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:3rem;align-items:center}
+.logos{display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+.logos img{width:clamp(76px,9vw,120px);height:auto}
+.logos img:nth-child(1){transform:translateX(-30px) rotate(-6deg)}
+.logos img:nth-child(2){transform:translateX(30px) rotate(5deg)}
+.logos img:nth-child(3){transform:translateX(-10px) rotate(-3deg)}
 .slot{border:1.5px dashed var(--red);border-radius:14px;padding:2rem;color:var(--red);text-align:center;font-size:.95rem}
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 .vs h3{font-size:1.3rem;margin-bottom:1rem}
@@ -66,7 +72,9 @@ details p{margin-top:.7rem;color:var(--muted)}
 .close .btn:hover{background:var(--red);color:#fff}
 footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)}
 .wa{position:fixed;right:1rem;bottom:1rem;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-@media(max-width:720px){.vs,.price,.nums{grid-template-columns:1fr}.steps,.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.hero-grid{grid-template-columns:1fr}
+.logos{flex-direction:row;justify-content:flex-start}
+.logos img{transform:none!important;width:64px}.vs,.price,.nums{grid-template-columns:1fr}.steps,.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
