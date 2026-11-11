@@ -163,7 +163,7 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
   function show(){
     if(!pick.type||!pick.aud||!pick.stage)return;
     var top=VIDEOS.map(function(v){
-      var s=0;COLS.forEach(function(c){if(v[c.key].indexOf(pick[c.key])>-1)s+=c.w});
+      var s=0;COLS.forEach(function(c){if((v[c.key]||[]).indexOf(pick[c.key])>-1)s+=c.w});
       return {v:v,s:s};
     }).sort(function(a,b){return b.s-a.s}).slice(0,3);
     var pkg="the 10 or 20 creator package";
