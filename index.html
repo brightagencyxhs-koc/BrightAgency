@@ -157,11 +157,11 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 <!-- ============ 3) PASTE THIS BEFORE </body> ============ -->
 <script>
 (function(){
-  var WA="60XXXXXXXXX"; // your WhatsApp number
+  var WA="60129357173"; // your WhatsApp number
   var COLS=[
-    {key:"type",title:"Starter · your place",w:3,opts:[["Cafe","Cafe"],["Restaurant","Restaurant (Chinese, Korean, Japanese)"],["Luxury Dining","Luxury dining"],["Hotpot","Hotpot"],["Dessert","Dessert"],["Bar","Bar"],["Others","Others (products / events)"]]},
-    {key:"aud",title:"Main · who to reach",w:2,opts:[["Office crowd","Office crowd"],["High buying power","High buying power"],["Students","Students"],["Families","Families"],["Tourists","Tourists"],["Others","Others"]]},
-    {key:"stage",title:"Dessert · right now",w:0,opts:[["Just opening","Just opening"],["Quiet weekdays","Quiet weekdays"],["More regulars","Want more regulars"],["Rebranding","Rebranding"]]}
+    {key:"type",title:"Starter",sub:"your place",w:3,opts:[["Cafe","Cafe"],["Restaurant","Restaurant (Chinese, Korean, Japanese)"],["Luxury Dining","Luxury dining"],["Hotpot","Hotpot"],["Dessert","Dessert"],["Bar","Bar"],["Others","Others (products / events)"]]},
+    {key:"aud",title:"Main",sub:"who to reach",w:2,opts:[["Office crowd","Office crowd"],["High buying power","High buying power"],["Students","Students"],["Families","Families"],["Tourists","Tourists"],["Others","Others"]]},
+    {key:"stage",title:"Dessert",sub:"right now",w:0,opts:[["Just opening","Just opening"],["Quiet weekdays","Quiet weekdays"],["More regulars","Want more regulars"],["Rebranding","Rebranding"]]}
   ];
   // One entry per video. result = a line you can prove (leave "" to hide it).
   var VIDEOS=[
@@ -176,14 +176,15 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
     {name:"Esca Bar",video:"video-09.mp4",thumb:"thumb-09.jpg",result:"",type:["Bar"],aud:["Office crowd"]},
     {name:"Allie event",video:"video-10.mp4",thumb:"thumb-10.jpg",result:"",type:["Others"],aud:["Others"]}
   ];
-  var pick={},cols=document.getElementById("bkCols"),out=document.getElementById("bkOut");
+  var pick={},label={},cols=document.getElementById("bkCols"),out=document.getElementById("bkOut"),n=0;
   COLS.forEach(function(c){
     var d=document.createElement("div");d.className="bk-col";
-    d.innerHTML="<h3>"+c.title+"</h3>";
+    d.innerHTML="<h3>"+c.title+"</h3><span class='sub'>"+c.sub+"</span>";
     c.opts.forEach(function(o){
-      var b=document.createElement("button");b.type="button";b.textContent=o[1];b.setAttribute("aria-pressed","false");
+      var b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed","false");
+      b.innerHTML="<span>"+o[1]+"</span><i></i>";
       b.onclick=function(){
-        pick[c.key]=o[0];
+        pick[c.key]=o[0];label[c.key]=o[1];
         d.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed","false")});
         b.setAttribute("aria-pressed","true");show();
       };
@@ -197,22 +198,27 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
       var s=0;COLS.forEach(function(c){if((v[c.key]||[]).indexOf(pick[c.key])>-1)s+=c.w});
       return {v:v,s:s};
     }).sort(function(a,b){return b.s-a.s}).slice(0,3);
-    var pkg="the 10 or 20 creator package";
-    var msg=encodeURIComponent("Hi Bright Agency, my order: "+pick.type+" / "+pick.aud+" / "+pick.stage+". I’m interested in "+pkg+".");
-    var html="<h3>Your order</h3><div class='bk-res'>";
+    var msg=encodeURIComponent("Hi Bright Agency, my order: "+pick.type+" / "+pick.aud+" / "+pick.stage+". I’m interested in the 10 or 20 creator package.");
+    n++;
+    var html="<div class='rc'><h3>Your order</h3><span class='no'>Table for one · No. "+String(n).padStart(3,"0")+"</span>"+
+      "<div class='ln'>Starter<i></i><b>"+label.type+"</b></div>"+
+      "<div class='ln'>Main<i></i><b>"+label.aud+"</b></div>"+
+      "<div class='ln'>Dessert<i></i><b>"+label.stage+"</b></div><hr>"+
+      "<p class='seen'>Served to places like yours</p>";
     top.forEach(function(t,k){
       var v=t.v;
-      html+="<div class='bk-card' data-i='"+k+"' tabindex='0' role='button' aria-label='Play "+v.name+"'><img src='"+v.thumb+"' alt='"+v.name+"'><div><b>"+v.name+"</b>"+(v.result?"<span>"+v.result+"</span>":"<span>Tap to watch</span>")+"</div></div>";
+      html+="<div class='bk-card' data-i='"+k+"' tabindex='0' role='button' aria-label='Play "+v.name+"'><img src='"+v.thumb+"' alt='"+v.name+"'><div><b>"+v.name+"</b><span>"+(v.result||"Tap to watch")+"</span></div></div>";
     });
-    html+="</div><p class='bk-pick'>Packages start at <b>RM2,000</b> for 10 creators.</p><a class='btn' target='_blank' rel='noopener' href='https://wa.me/"+WA+"?text="+msg+"'>Send this order on WhatsApp</a>";
+    html+="<hr><div class='ln tot'>Packages from<i></i><b>RM2,000</b></div><a class='btn' target='_blank' rel='noopener' href='https://wa.me/"+WA+"?text="+msg+"'>Send this order on WhatsApp</a></div>";
     out.innerHTML=html;
+    out.classList.remove("turn");void out.offsetWidth;out.classList.add("turn");
     out.querySelectorAll(".bk-card").forEach(function(c){
       function play(){
         if(c.classList.contains("on"))return;
         out.querySelectorAll("video").forEach(function(x){x.pause()});
         var v=top[c.dataset.i].v;
         c.classList.add("on");
-        c.innerHTML="<video src='"+v.video+"' poster='"+v.thumb+"' controls autoplay playsinline preload='metadata'></video><div><b>"+v.name+"</b>"+(v.result?"<span>"+v.result+"</span>":"")+"</div>";
+        c.innerHTML="<video src='"+v.video+"' poster='"+v.thumb+"' controls autoplay playsinline preload='metadata'></video><div><b>"+v.name+"</b></div>";
       }
       c.onclick=play;c.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();play()}};
     });
@@ -318,7 +324,7 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 </section>
 
 <footer>© Bright Agency</footer>
-<a class="btn wa" href="https://wa.me/60XXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn wa" href="https://wa.me/60129357173" target="_blank" rel="noopener">WhatsApp</a>
 
 </body>
 </html>
