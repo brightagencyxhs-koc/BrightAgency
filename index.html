@@ -270,7 +270,6 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
         <small>BREAK-EVEN AT</small>
         <div class="big" id="cBig">--</div>
         <div class="note" id="cNote"></div>
-        <div class="row"><span>Cost per customer</span><b id="cCpa">--</b></div>
         <div class="row"><span>Min. customers per post</span><b id="cMin">9</b></div>
         <div class="row"><span>Min. profit per post</span><b id="cPost">--</b></div>
         <div class="row"><span id="cPkgL">Whole package</span><b id="cPkg">--</b></div>
@@ -305,7 +304,6 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
     }
     var be=Math.ceil(price/per-1e-9);
     $("cBig").textContent=be+(be===1?" customer":" customers");
-    $("cNote").textContent=be<=MIN?"One post pays back its "+rm(price,0):"Needs "+Math.ceil(be/MIN)+" posts to pay back "+rm(price,0);
     $("cPost").textContent=rm(MIN*per-price,0);
     $("cPkg").textContent=rm(n*MIN*per-n*price,0);
     var msg="Hi Bright Agency, my numbers: "+rm(p,2)+" profit per customer, "+pax+" pax per table. Break-even is "+be+" customers on the "+n+"-creator package.";
