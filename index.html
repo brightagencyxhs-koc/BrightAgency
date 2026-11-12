@@ -362,23 +362,28 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 <!-- ============ 3) ADD THIS SCRIPT BEFORE </body> ============ -->
 <script>
 (function(){
-  // One line per client. img = the picture file, name = shown under it.
+  // One line per client. img = the picture file, name = shown under it, note = optional small line.
   var CLIENTS=[
+    {name:"Tsukiji Sushi",img:"client-tsukiji.jpg"},
+    {name:"Esca Bar",img:"thumb-09.jpg"},
+    {name:"Gioia 118",img:"thumb-08.jpg"},
+    {name:"Yakiniku Tenshin",img:"thumb-07.jpg"},
+    {name:"Brewmaster",note:"7 branches across Malaysia",img:"client-brewmaster.jpg"},
     {name:"Du Du Hotpot",img:"thumb-01.jpg"},
     {name:"Orito Cafe",img:"thumb-02.jpg"},
     {name:"Say Cheese Cafe",img:"thumb-03.jpg"},
     {name:"Dolly Dim Sum",img:"thumb-04.jpg"},
     {name:"Hanare Japanese Cuisine",img:"thumb-05.jpg"},
     {name:"Cheong Dam Chae Singapore",img:"thumb-06.jpg"},
-    {name:"Yakiniku Tenshin",img:"thumb-07.jpg"},
-    {name:"Gioia 118",img:"thumb-08.jpg"},
-    {name:"Esca Bar",img:"thumb-09.jpg"},
-    {name:"Allie event",img:"thumb-10.jpg"}
+    {name:"Allie event",img:"thumb-10.jpg"},
+    {name:"The Rebel Penguin",note:"Petaling Jaya",img:"client-rebel-penguin.jpg"},
+    {name:"Brew by Cobnb",img:"client-brew-cobnb.jpg"},
+    {name:"Lost x Found",note:"TRX",img:"client-lost-found.jpg"}
   ];
   var rail=document.getElementById("rail");
   CLIENTS.forEach(function(c){
     var f=document.createElement("figure");
-    f.innerHTML="<img src='"+c.img+"' alt='"+c.name+"' loading='lazy' draggable='false'><figcaption>"+c.name+"</figcaption>";
+    f.innerHTML="<img src='"+c.img+"' alt='"+c.name+"' loading='lazy' draggable='false'><figcaption>"+c.name+(c.note?"<small>"+c.note+"</small>":"")+"</figcaption>";
     rail.appendChild(f);
   });
   function step(dir){rail.scrollBy({left:dir*rail.clientWidth*.8,behavior:"smooth"})}
@@ -391,6 +396,7 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
   window.addEventListener("pointerup",function(){if(down){down=false;rail.classList.remove("drag")}});
 })();
 </script>
+ 
 </section>
 
   
