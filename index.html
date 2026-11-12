@@ -272,13 +272,10 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
         <div class="note" id="cNote"></div>
         <div class="row"><span>Min. customers per post</span><b id="cMin">9</b></div>
         <div class="row"><span>Min. profit per post</span><b id="cPost">--</b></div>
-        <div class="row"><span id="cPkgL">Whole package</span><b id="cPkg">--</b></div>
+        <div class="row"><span id="cPkgL">Whole package profit</span><b id="cPkg">--</b></div>
       </div>
       <div class="calc-in"><label for="cProfit">Average profit per customer (RM)</label><input id="cProfit" type="number" inputmode="decimal" min="0" step="1" value="15"></div>
       <div class="calc-in"><span class="l">Pax per table</span><button class="key" type="button" id="cMinus" aria-label="Fewer pax">−</button><output id="cPax">3</output><button class="key" type="button" id="cPlus" aria-label="More pax">+</button></div>
-      <div class="keys2">
-        <button class="key" type="button" data-n="20" data-p="150" aria-pressed="false">20 creators<br>RM150 each</button>
-      </div>
       <a class="key eq" id="cWa" target="_blank" rel="noopener" href="#">= Send my numbers on WhatsApp</a>
     </div>
     <p class="calc-fine">Based on a minimum of 50 likes and saves per post, with 18% turning into customers. One customer = one table. Real results vary.</p>
@@ -290,20 +287,20 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 (function(){
   var WA="60129357173"; // your WhatsApp number
   var MIN=Math.floor(50*0.18+1e-9); // 9 customers per post
-  var pax=3,n=10,price=200;
+  var pax=3,n=20,price=150;
   var $=function(i){return document.getElementById(i)};
   function rm(v,d){return "RM"+v.toLocaleString("en-MY",{minimumFractionDigits:d,maximumFractionDigits:d})}
   function calc(){
     var p=parseFloat($("cProfit").value)||0,per=p*pax;
     $("cPax").textContent=pax;
-    $("cCpa").textContent=rm(price/MIN,2);
-    $("cPkgL").textContent="Whole package ("+n+" creators)";
+    $("cPkgL").textContent="Whole package profit ("+n+" creators)";
     if(per<=0){
       $("cBig").textContent="--";$("cNote").textContent="Enter your profit per customer";
       $("cPost").textContent="--";$("cPkg").textContent="--";return;
     }
     var be=Math.ceil(price/per-1e-9);
     $("cBig").textContent=be+(be===1?" customer":" customers");
+    $("cNote").textContent="pays back 1 KOC price";
     $("cPost").textContent=rm(MIN*per-price,0);
     $("cPkg").textContent=rm(n*MIN*per-n*price,0);
     var msg="Hi Bright Agency, my numbers: "+rm(p,2)+" profit per customer, "+pax+" pax per table. Break-even is "+be+" customers on the "+n+"-creator package.";
@@ -312,13 +309,6 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
   $("cProfit").addEventListener("input",calc);
   $("cMinus").onclick=function(){pax=Math.max(1,pax-1);calc()};
   $("cPlus").onclick=function(){pax=Math.min(20,pax+1);calc()};
-  document.querySelectorAll("#calc [data-n]").forEach(function(b){
-    b.onclick=function(){
-      n=+b.dataset.n;price=+b.dataset.p;
-      document.querySelectorAll("#calc [data-n]").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
-      calc();
-    };
-  });
   calc();
 })();
 </script>
