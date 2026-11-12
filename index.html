@@ -365,6 +365,68 @@ footer{padding:2rem 1.5rem;text-align:center;font-size:.85rem;color:var(--muted)
 
 <!-- 6. VIDEOS -->
 <section id="videos">
+  <!-- ============ 1) PASTE THIS CSS INSIDE <style> ============ -->
+<style>
+.rail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:1.2rem}
+.rail-head h2{margin-bottom:0}
+.rail-btns{display:flex;gap:.6rem;flex:none}
+.rail-btns button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:none;color:var(--ink);font-size:1.1rem;cursor:pointer;transition:.15s}
+.rail-btns button:hover{background:var(--ink);color:var(--paper)}
+.rail{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.4rem 0 1rem;scrollbar-width:none;cursor:grab;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.rail figure{flex:0 0 clamp(165px,22vw,230px);scroll-snap-align:start}
+.rail img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:14px;background:var(--sand);user-select:none;-webkit-user-drag:none}
+.rail figcaption{margin-top:.6rem;font:400 .98rem "Young Serif",Georgia,serif}
+</style>
+
+<!-- ============ 2) ADD THIS SECTION WHERE YOU WANT IT ============ -->
+<section id="clients">
+  <div class="wrap">
+    <div class="rail-head">
+      <h2>Brands we’ve worked with</h2>
+      <div class="rail-btns">
+        <button type="button" id="railPrev" aria-label="Scroll left">←</button>
+        <button type="button" id="railNext" aria-label="Scroll right">→</button>
+      </div>
+    </div>
+    <div class="rail" id="rail" tabindex="0" role="region" aria-label="Past clients, scrolls sideways"></div>
+  </div>
+</section>
+
+<!-- ============ 3) ADD THIS SCRIPT BEFORE </body> ============ -->
+<script>
+(function(){
+  // One line per client. img = the picture file, name = shown under it.
+  var CLIENTS=[
+    {name:"Du Du Hotpot",img:"thumb-01.jpg"},
+    {name:"Orito Cafe",img:"thumb-02.jpg"},
+    {name:"Say Cheese Cafe",img:"thumb-03.jpg"},
+    {name:"Dolly Dim Sum",img:"thumb-04.jpg"},
+    {name:"Hanare Japanese Cuisine",img:"thumb-05.jpg"},
+    {name:"Cheong Dam Chae Singapore",img:"thumb-06.jpg"},
+    {name:"Yakiniku Tenshin",img:"thumb-07.jpg"},
+    {name:"Gioia 118",img:"thumb-08.jpg"},
+    {name:"Esca Bar",img:"thumb-09.jpg"},
+    {name:"Allie event",img:"thumb-10.jpg"}
+  ];
+  var rail=document.getElementById("rail");
+  CLIENTS.forEach(function(c){
+    var f=document.createElement("figure");
+    f.innerHTML="<img src='"+c.img+"' alt='"+c.name+"' loading='lazy' draggable='false'><figcaption>"+c.name+"</figcaption>";
+    rail.appendChild(f);
+  });
+  function step(dir){rail.scrollBy({left:dir*rail.clientWidth*.8,behavior:"smooth"})}
+  document.getElementById("railPrev").onclick=function(){step(-1)};
+  document.getElementById("railNext").onclick=function(){step(1)};
+  // drag to scroll with a mouse (touch already swipes)
+  var down=false,sx=0,sl=0;
+  rail.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse")return;down=true;sx=e.clientX;sl=rail.scrollLeft;rail.classList.add("drag")});
+  window.addEventListener("pointermove",function(e){if(down)rail.scrollLeft=sl-(e.clientX-sx)});
+  window.addEventListener("pointerup",function(){if(down){down=false;rail.classList.remove("drag")}});
+})();
+</script>
+  
   <div class="wrap">
     <h2>See it in action</h2>
     <!-- Replace each .slot with: <video src="videos/clip.mp4" controls preload="none" playsinline></video> (keep under 10 MB) -->
